@@ -8,18 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var messageString = ""
+    @State private var messageString = "When the Genius Bar needs help, theycall you!"
     
     var body: some View {
         
         VStack {
             Text(messageString)
-                .font(.largeTitle)
-                .fontWeight(.heavy)
+                .font(.largeTitle)//標題
+                .fontWeight(.heavy)//大型字
+                .minimumScaleFactor(0.5)//過大自動縮小 直至符合
                 .foregroundColor(Color.green)
                 .italic()
                 .padding()
-            
+                .frame(width: 300, height: 150) //固定文字框大小
+                .border(.brown, width: 1)//檢查用框框
             HStack{
                 Button("Awesome") {
                     //action when button is pressed
