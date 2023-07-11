@@ -51,10 +51,32 @@ struct ContentView: View {
                     
                     Spacer()//空間等分空格填充
                     
-                    Image(systemName: "figure.mind.and.body")
+                    //Image(systemName: "speaker.wave.3",variableValue: 0.5)
+                    Image(systemName: "cloud.sun.rain.fill")
                         .resizable()
                         .scaledToFit()
-                        .foregroundColor(.pink)
+                    //黑灰白三色階
+//                        .symbolRenderingMode(.hierarchical)
+                    //自定義三色
+//                        .symbolRenderingMode(.palette)
+//                        .foregroundStyle(.gray, .orange, .blue)
+                    //三色
+                        .symbolRenderingMode(.multicolor)
+                        .padding()
+                    //透過右邊屬性欄自訂顏色
+                        .background(Color(hue: 0.525, saturation: 0.782, brightness: 0.954, opacity: 0.452))
+                    //圓角修飾
+                        .cornerRadius(30)
+                    //陰影
+                        .shadow(color: .gray,radius: 30,x: 20,y: 20)
+                    //邊框
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 30)
+                                .stroke(.teal, lineWidth:2)//描邊
+                        )
+                    //剪成圓形
+                        //.clipShape(Circle())
+                        .padding()
                     
                     Text(messageString)
                         .font(.largeTitle)//標題
