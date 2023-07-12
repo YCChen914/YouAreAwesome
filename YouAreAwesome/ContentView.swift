@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var messageString = "Namaste"
+    @State private var messageImage = ""
 //    @State private var pressCounter = 0 //2023/7/12練習 我的寫法
     
     var body: some View {
@@ -51,33 +52,38 @@ struct ContentView: View {
                     //                        .cornerRadius(15)//圓角與安全區設置-2
                     
                     Spacer()//空間等分空格填充
-                    
-                    //Image(systemName: "speaker.wave.3",variableValue: 0.5)
-                    Image(systemName: "cloud.sun.rain.fill")
+                    Image(messageImage)
                         .resizable()
                         .scaledToFit()
-                    //黑灰白三色階
-                    //                        .symbolRenderingMode(.hierarchical)
-                    //自定義三色
-                    //                        .symbolRenderingMode(.palette)
-                    //                        .foregroundStyle(.gray, .orange, .blue)
-                    //三色
-                        .symbolRenderingMode(.multicolor)
-                        .padding()
-                    //透過右邊屬性欄自訂顏色
-                        .background(Color(hue: 0.525, saturation: 0.782, brightness: 0.954, opacity: 0.452))
-                    //圓角修飾
                         .cornerRadius(30)
-                    //陰影
-                        .shadow(color: .gray,radius: 30,x: 20,y: 20)
-                    //邊框
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 30)
-                                .stroke(.teal, lineWidth:2)//描邊
-                        )
-                    //剪成圓形
-                    //.clipShape(Circle())
+                        .shadow(radius: 30)
                         .padding()
+//                    //Image(systemName: "speaker.wave.3",variableValue: 0.5)
+//                    Image(systemName: "cloud.sun.rain.fill")
+//                        .resizable()
+//                        .scaledToFit()
+//                    //黑灰白三色階
+//                    //                        .symbolRenderingMode(.hierarchical)
+//                    //自定義三色
+//                    //                        .symbolRenderingMode(.palette)
+//                    //                        .foregroundStyle(.gray, .orange, .blue)
+//                    //三色
+//                        .symbolRenderingMode(.multicolor)
+//                        .padding()
+//                    //透過右邊屬性欄自訂顏色
+//                        .background(Color(hue: 0.525, saturation: 0.782, brightness: 0.954, opacity: 0.452))
+//                    //圓角修飾
+//                        .cornerRadius(30)
+//                    //陰影
+//                        .shadow(color: .gray,radius: 30,x: 20,y: 20)
+//                    //邊框
+//                        .overlay(
+//                            RoundedRectangle(cornerRadius: 30)
+//                                .stroke(.teal, lineWidth:2)//描邊
+//                        )
+//                    //剪成圓形
+//                    //.clipShape(Circle())
+//                        .padding()
                     
                     Text(messageString)
                         .font(.largeTitle)//標題
@@ -107,7 +113,10 @@ struct ContentView: View {
                             //利用let固定不可變更 可加速運算
                             let message1 = "You Are Awesome!"
                             let message2 = "You Are Great!"
+                            let image0 = "image0"
+                            let image1 = "image1"
                             //三元運算式寫法
+                            messageImage = (messageImage == image0 ? image1 :image0)
                             messageString = (messageString == message1 ? message2 : message1)
 //                            if messageString == message1
 //                            {
