@@ -115,10 +115,10 @@ struct ContentView: View {
                             let message = ["You Are Awesome!","You Are Great!","Fabulous? That's You!","So Good!"]
                             
                             //三元運算式寫法
-                            messageImage = (messageImage == 9 ? 0 : messageImage+1)
+                            messageImage = Int.random(in: 0...9)
                             print(messageImage)
-                            messageCount = (messageCount == message.count-1 ? 0 : messageCount+1)
-                            messageString = message[messageCount]
+//                            messageCount = (messageCount == message.count-1 ? 0 : messageCount+1)
+                            messageString = message[Int.random(in: 0...message.count-1)]
                             //                            if messageString == message1
                             //                            {
                             //                                messageString = message2
