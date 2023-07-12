@@ -104,18 +104,19 @@ struct ContentView: View {
                     HStack{
                         Button("Show Message") {
                             //action when button is pressed
-                            //利用let
+                            //利用let固定不可變更 可加速運算
                             let message1 = "You Are Awesome!"
                             let message2 = "You Are Great!"
-                            
-                            if messageString == message1
-                            {
-                                messageString = message2
-                            }
-                            else
-                            {
-                                messageString = message1
-                            }
+                            //三元運算式寫法
+                            messageString = (messageString == message1 ? message2 : message1)
+//                            if messageString == message1
+//                            {
+//                                messageString = message2
+//                            }
+//                            else
+//                            {
+//                                messageString = message1
+//                            }
                             //2023/7/12練習 我的寫法
 //                            if pressCounter == 0
 //                            {
