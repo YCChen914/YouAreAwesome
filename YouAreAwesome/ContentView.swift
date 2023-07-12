@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var messageString = "Namaste"
-    @State private var messageImage = ""
+    @State private var messageImage = 0
 //    @State private var pressCounter = 0 //2023/7/12練習 我的寫法
     
     var body: some View {
@@ -52,7 +52,7 @@ struct ContentView: View {
                     //                        .cornerRadius(15)//圓角與安全區設置-2
                     
                     Spacer()//空間等分空格填充
-                    Image(messageImage)
+                    Image("image"+String(messageImage))
                         .resizable()
                         .scaledToFit()
                         .cornerRadius(30)
@@ -113,10 +113,9 @@ struct ContentView: View {
                             //利用let固定不可變更 可加速運算
                             let message1 = "You Are Awesome!"
                             let message2 = "You Are Great!"
-                            let image0 = "image0"
-                            let image1 = "image1"
                             //三元運算式寫法
-                            messageImage = (messageImage == image0 ? image1 :image0)
+                            messageImage = (messageImage == 9 ? 0 : messageImage+1)
+                            print(messageImage)
                             messageString = (messageString == message1 ? message2 : message1)
 //                            if messageString == message1
 //                            {
