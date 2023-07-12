@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State private var messageString = "Namaste"
     @State private var messageImage = 0
-//    @State private var pressCounter = 0 //2023/7/12練習 我的寫法
+    @State private var messageCount = 0
+    //    @State private var pressCounter = 0 //2023/7/12練習 我的寫法
     
     var body: some View {
         GeometryReader {geometry in //空間大小閱讀器 利用一個變數去抓螢幕大小
@@ -58,32 +59,32 @@ struct ContentView: View {
                         .cornerRadius(30)
                         .shadow(radius: 30)
                         .padding()
-//                    //Image(systemName: "speaker.wave.3",variableValue: 0.5)
-//                    Image(systemName: "cloud.sun.rain.fill")
-//                        .resizable()
-//                        .scaledToFit()
-//                    //黑灰白三色階
-//                    //                        .symbolRenderingMode(.hierarchical)
-//                    //自定義三色
-//                    //                        .symbolRenderingMode(.palette)
-//                    //                        .foregroundStyle(.gray, .orange, .blue)
-//                    //三色
-//                        .symbolRenderingMode(.multicolor)
-//                        .padding()
-//                    //透過右邊屬性欄自訂顏色
-//                        .background(Color(hue: 0.525, saturation: 0.782, brightness: 0.954, opacity: 0.452))
-//                    //圓角修飾
-//                        .cornerRadius(30)
-//                    //陰影
-//                        .shadow(color: .gray,radius: 30,x: 20,y: 20)
-//                    //邊框
-//                        .overlay(
-//                            RoundedRectangle(cornerRadius: 30)
-//                                .stroke(.teal, lineWidth:2)//描邊
-//                        )
-//                    //剪成圓形
-//                    //.clipShape(Circle())
-//                        .padding()
+                    //                    //Image(systemName: "speaker.wave.3",variableValue: 0.5)
+                    //                    Image(systemName: "cloud.sun.rain.fill")
+                    //                        .resizable()
+                    //                        .scaledToFit()
+                    //                    //黑灰白三色階
+                    //                    //                        .symbolRenderingMode(.hierarchical)
+                    //                    //自定義三色
+                    //                    //                        .symbolRenderingMode(.palette)
+                    //                    //                        .foregroundStyle(.gray, .orange, .blue)
+                    //                    //三色
+                    //                        .symbolRenderingMode(.multicolor)
+                    //                        .padding()
+                    //                    //透過右邊屬性欄自訂顏色
+                    //                        .background(Color(hue: 0.525, saturation: 0.782, brightness: 0.954, opacity: 0.452))
+                    //                    //圓角修飾
+                    //                        .cornerRadius(30)
+                    //                    //陰影
+                    //                        .shadow(color: .gray,radius: 30,x: 20,y: 20)
+                    //                    //邊框
+                    //                        .overlay(
+                    //                            RoundedRectangle(cornerRadius: 30)
+                    //                                .stroke(.teal, lineWidth:2)//描邊
+                    //                        )
+                    //                    //剪成圓形
+                    //                    //.clipShape(Circle())
+                    //                        .padding()
                     
                     Text(messageString)
                         .font(.largeTitle)//標題
@@ -111,31 +112,32 @@ struct ContentView: View {
                         Button("Show Message") {
                             //action when button is pressed
                             //利用let固定不可變更 可加速運算
-                            let message1 = "You Are Awesome!"
-                            let message2 = "You Are Great!"
+                            let message = ["You Are Awesome!","You Are Great!","Fabulous? That's You!","So Good!"]
+                            
                             //三元運算式寫法
                             messageImage = (messageImage == 9 ? 0 : messageImage+1)
                             print(messageImage)
-                            messageString = (messageString == message1 ? message2 : message1)
-//                            if messageString == message1
-//                            {
-//                                messageString = message2
-//                            }
-//                            else
-//                            {
-//                                messageString = message1
-//                            }
+                            messageCount = (messageCount == message.count-1 ? 0 : messageCount+1)
+                            messageString = message[messageCount]
+                            //                            if messageString == message1
+                            //                            {
+                            //                                messageString = message2
+                            //                            }
+                            //                            else
+                            //                            {
+                            //                                messageString = message1
+                            //                            }
                             //2023/7/12練習 我的寫法
-//                            if pressCounter == 0
-//                            {
-//                                messageString = "You Are Awesome!"
-//                                pressCounter = 1
-//                            }
-//                            else
-//                            {
-//                                messageString = "You Are Great!"
-//                                pressCounter = 0
-//                            }
+                            //                            if pressCounter == 0
+                            //                            {
+                            //                                messageString = "You Are Awesome!"
+                            //                                pressCounter = 1
+                            //                            }
+                            //                            else
+                            //                            {
+                            //                                messageString = "You Are Great!"
+                            //                                pressCounter = 0
+                            //                            }
                         }
                         .buttonStyle(.borderedProminent) //設定按鈕格式
                         
