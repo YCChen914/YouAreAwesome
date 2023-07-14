@@ -116,37 +116,27 @@ struct ContentView: View {
                             //action when button is pressed
                             //利用let固定不可變更 可加速運算
                             let message = ["You Are Awesome!","You Are Great!","Fabulous? That's You!","So Good!"]
-                            var newInt:Int
                             //三元運算式寫法
                             //print(messageImage)
 //                            messageCount = (messageCount == message.count-1 ? 0 : messageCount+1)
-                            repeat{
-                                newInt = Int.random(in: 0...9)
-                            }while newInt == messageImage
-                            messageImage = newInt
+//                            var newInt:Int
+//                            repeat{
+//                                newInt = Int.random(in: 0...9)
+//                            }while newInt == messageImage
+                            messageImage = randomRepeatCheck(check: messageImage, randomStart: 0, randomEnd: 9)
                             
-                            repeat{
-                                newInt = Int.random(in: 0...message.count-1)
-                            }while newInt == messageCount
-                            messageCount = newInt
-                            messageString = message[messageCount]
+//                            repeat{
+//                                newInt = Int.random(in: 0...message.count-1)
+//                            }while newInt == messageCount
+//                            messageCount = newInt
+                            messageString = message[randomRepeatCheck(check: messageCount, randomStart: 0, randomEnd: message.count-1)]
                             
-                            repeat{
-                                newInt = Int.random(in: 0...5)
-                            }while newInt == messageSound
-                            messageSound = newInt
+//                            repeat{
+//                                newInt = Int.random(in: 0...5)
+//                            }while newInt == messageSound
+                            messageSound = randomRepeatCheck(check: messageSound, randomStart: 0, randomEnd: 5)
                             
-                            let soundName = "sound\(messageSound)"
-                            guard let soundFile = NSDataAsset(name: soundName)else{
-                                print("😡Could not read file named \(soundName)")
-                                return
-                            }
-                            do{
-                                audioPlayer = try AVAudioPlayer(data: soundFile.data)
-                                audioPlayer.play()
-                            }catch{
-                                print("😡 ERROR: \(error.localizedDescription) creating audioPlayer")
-                            }
+                            playSound()
                             //                            if messageString == message1
                             //                            {
                             //                                messageString = message2
@@ -181,6 +171,31 @@ struct ContentView: View {
                     .padding()
                 }
             }
+        }
+    }
+    func randomRepeatCheck(check:Int,randomStart:Int,randomEnd:Int) -> Int {
+        var newInt:Int
+        guard randomEnd >= randomStart else{
+            print("You cannot put more End-Number than Start-Number!")
+            return -1
+        }
+        repeat{
+            newInt = Int.random(in: randomStart...randomEnd)
+        }while newInt == check
+        return newInt
+    }
+    
+    func playSound(){
+        let soundName = "sound\(messageSound)"
+        guard let soundFile = NSDataAsset(name: soundName)else{
+            print("😡Could not read file named \(soundName)")
+            return
+        }
+        do{
+            audioPlayer = try AVAudioPlayer(data: soundFile.data)
+            audioPlayer.play()
+        }catch{
+            print("😡 ERROR: \(error.localizedDescription) creating audioPlayer")
         }
     }
 }
