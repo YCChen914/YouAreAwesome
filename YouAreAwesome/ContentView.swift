@@ -52,6 +52,17 @@ struct ContentView: View {
                     //                        .background(Color("Lime"))
                     //                        .cornerRadius(15)//圓角與安全區設置-2
                     
+                    Text(messageString)
+                        .font(.largeTitle)//標題
+                        .fontWeight(.heavy)//大型字
+                        .minimumScaleFactor(0.5)//過大自動縮小 直至符合
+                        .multilineTextAlignment(.center)//多行自動對齊
+                        .foregroundColor(Color.pink)
+                    //.italic()//斜體
+                        .frame(height: 150) //固定文字框大小
+                        .frame(maxWidth:.infinity)//自動調整到最寬
+                    //                .border(.brown, width: 1)//檢查用框框
+                        .padding()//填充空格
                     Spacer()//空間等分空格填充
                     Image("image"+String(messageImage))
                         .resizable()
@@ -86,17 +97,6 @@ struct ContentView: View {
                     //                    //.clipShape(Circle())
                     //                        .padding()
                     
-                    Text(messageString)
-                        .font(.largeTitle)//標題
-                        .fontWeight(.heavy)//大型字
-                        .minimumScaleFactor(0.5)//過大自動縮小 直至符合
-                        .multilineTextAlignment(.center)//多行自動對齊
-                        .foregroundColor(Color.pink)
-                    //.italic()//斜體
-                        .frame(height: 150) //固定文字框大小
-                        .frame(maxWidth:.infinity)//自動調整到最寬
-                    //                .border(.brown, width: 1)//檢查用框框
-                        .padding()//填充空格
                     
                     Spacer()//空間等分空格填充
                     
@@ -113,12 +113,19 @@ struct ContentView: View {
                             //action when button is pressed
                             //利用let固定不可變更 可加速運算
                             let message = ["You Are Awesome!","You Are Great!","Fabulous? That's You!","So Good!"]
-                            
+                            var newInt:Int
                             //三元運算式寫法
-                            messageImage = Int.random(in: 0...9)
-                            print(messageImage)
+                            repeat{
+                                newInt = Int.random(in: 0...9)
+                            }while newInt == messageImage
+                            messageImage = newInt
+                            //print(messageImage)
 //                            messageCount = (messageCount == message.count-1 ? 0 : messageCount+1)
-                            messageString = message[Int.random(in: 0...message.count-1)]
+                            repeat{
+                                newInt = Int.random(in: 0...message.count-1)
+                            }while newInt == messageCount
+                            messageCount = newInt
+                            messageString = message[messageCount]
                             //                            if messageString == message1
                             //                            {
                             //                                messageString = message2
