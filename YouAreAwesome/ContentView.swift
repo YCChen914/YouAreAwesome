@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import AVFAudio
 
 struct ContentView: View {
     @State private var messageString = "Namaste"
     @State private var messageImage = 0
     @State private var messageCount = 0
+    @State private var messageSound = 0
+    @State private var audioPlayer: AVAudioPlayer!
     //    @State private var pressCounter = 0 //2023/7/12練習 我的寫法
     
     var body: some View {
@@ -115,17 +118,35 @@ struct ContentView: View {
                             let message = ["You Are Awesome!","You Are Great!","Fabulous? That's You!","So Good!"]
                             var newInt:Int
                             //三元運算式寫法
+                            //print(messageImage)
+//                            messageCount = (messageCount == message.count-1 ? 0 : messageCount+1)
                             repeat{
                                 newInt = Int.random(in: 0...9)
                             }while newInt == messageImage
                             messageImage = newInt
-                            //print(messageImage)
-//                            messageCount = (messageCount == message.count-1 ? 0 : messageCount+1)
+                            
                             repeat{
                                 newInt = Int.random(in: 0...message.count-1)
                             }while newInt == messageCount
                             messageCount = newInt
                             messageString = message[messageCount]
+                            
+                            repeat{
+                                newInt = Int.random(in: 0...5)
+                            }while newInt == messageSound
+                            messageSound = newInt
+                            
+                            let soundName = "sound\(messageSound)"
+                            guard let soundFile = NSDataAsset(name: soundName)else{
+                                print("😡Could not read file named \(soundName)")
+                                return
+                            }
+                            do{
+                                audioPlayer = try AVAudioPlayer(data: soundFile.data)
+                                audioPlayer.play()
+                            }catch{
+                                print("😡 ERROR: \(error.localizedDescription) creating audioPlayer")
+                            }
                             //                            if messageString == message1
                             //                            {
                             //                                messageString = message2
