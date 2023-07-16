@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var messageCount = 0
     @State private var messageSound = 0
     @State private var audioPlayer: AVAudioPlayer!
+    @State private var soundOn = true
     //    @State private var pressCounter = 0 //2023/7/12練習 我的寫法
     
     var body: some View {
@@ -112,6 +113,16 @@ struct ContentView: View {
                     //                        .fill(Color("SweetOrange"))
                     //                        .frame(width: geometry.size.width*(2/3), height: 3)//寬度自訂
                     HStack{
+                        Text("Sound On:")
+                        Toggle("",isOn: $soundOn)
+                            //.border(.blue)
+                            .labelsHidden()
+                            .onChange(of: soundOn) { _ in
+                                if audioPlayer != nil && audioPlayer.isPlaying{
+                                    audioPlayer.stop()
+                                }
+                            }
+                        Spacer()
                         Button("Show Message") {
                             //action when button is pressed
                             //利用let固定不可變更 可加速運算
@@ -136,7 +147,9 @@ struct ContentView: View {
 //                            }while newInt == messageSound
                             messageSound = randomRepeatCheck(check: messageSound, randomStart: 0, randomEnd: 5)
                             
-                            playSound()
+                            if soundOn {
+                                playSound()
+                            }
                             //                            if messageString == message1
                             //                            {
                             //                                messageString = message2
