@@ -67,6 +67,8 @@ struct ContentView: View {
                         .frame(maxWidth:.infinity)//自動調整到最寬
                     //                .border(.brown, width: 1)//檢查用框框
                         .padding()//填充空格
+                        //.animation(.default, value: messageString)
+                        .animation(.easeInOut(duration: 0.3), value: messageString)
                     Spacer()//空間等分空格填充
                     Image("image"+String(messageImage))
                         .resizable()
@@ -74,6 +76,7 @@ struct ContentView: View {
                         .cornerRadius(30)
                         .shadow(radius: 30)
                         .padding()
+                        .animation(.default, value: messageString)
                     //                    //Image(systemName: "speaker.wave.3",variableValue: 0.5)
                     //                    Image(systemName: "cloud.sun.rain.fill")
                     //                        .resizable()
@@ -182,6 +185,7 @@ struct ContentView: View {
                     }
                     //            .border(.brown, width: 5)//檢查用框框
                     .padding()
+                    .tint(.accentColor)
                 }
             }
         }
